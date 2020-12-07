@@ -1,4 +1,8 @@
-require 'net/http/persistent'
+begin
+  require 'net/http/persistent'
+rescue LoadError => e
+  warn 'Cannot load net/http/persistent'
+end
 
 require 'andpush/version'
 require 'andpush/client'
