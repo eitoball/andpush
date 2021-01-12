@@ -1,4 +1,4 @@
-require 'net/http/persistent'
+require 'bundler/vendored_persistent'
 
 require 'andpush/version'
 require 'andpush/client'
@@ -46,8 +46,8 @@ module Andpush
   class ConnectionPool
     attr_reader :connection
 
-    def initialize(name: nil, proxy: nil, pool_size: Net::HTTP::Persistent::DEFAULT_POOL_SIZE)
-      @connection = Net::HTTP::Persistent.new(name: name, proxy: proxy, pool_size: pool_size)
+    def initialize(name: nil, proxy: nil, pool_size: Bundler::Persistent::Net::HTTP::Persistent::DEFAULT_POOL_SIZE)
+      @connection = Bundler::Persistent::Net::HTTP::Persistent.new(name: name, proxy: proxy, pool_size: pool_size)
     end
 
     def call(request_class, uri, headers, body, *_)
